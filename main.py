@@ -2,6 +2,8 @@ import time
 
 
 class CoffeeMachine:
+    """Модель консольной кофемашины с контролем ресурсов и контейнера отходов"""
+    
     max_water = 1000
     max_beans = 500
     max_milk = 500
@@ -14,6 +16,7 @@ class CoffeeMachine:
 
     @property
     def get_status(self):
+        """Возвращает текущий статус воды, зерён, молока и заполненности отходов"""
         return (f"Количество воды: {self.__water_level} мл\n"
                 f"Количество зёрен: {self.__coffee_beans} г\n"
                 f"Количество молока: {self.__milk_level} мл\n"
@@ -47,10 +50,12 @@ class CoffeeMachine:
         self.__milk_level += amount
 
     def clean_machine(self):
+        """Сбрасывает счётчик отходов"""
         self.__waste_counter = 0
         return "Успешная очистка контейнера отходов!"
 
     def make_coffee(self):
+        """Проверяет состояние отходов, даёт выбрать напиток, списывает ресурсы и запускает приготовление"""
         if self.__waste_counter >= 5:
             raise ValueError("Ошибка: очистите контейнер отходов")
 
@@ -121,6 +126,7 @@ class CoffeeMachine:
 
 
 def run():
+    """Запускает главный цикл консольного меню кофемашины"""
     coffee = CoffeeMachine()
 
     while True:
